@@ -10,7 +10,7 @@ export default function App(props: { initData: ListInitData }) {
       <main class="main">
         <ul class="card-list">
           {list().map((item) => (
-            <li class="card" key={item.id}>
+            <li class="card">
               <a class="card-link" href={item.href} rel="noopener">
                 <h2 class="card-title">{item.title}</h2>
                 <p class="card-summary">{item.summary}</p>
