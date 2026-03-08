@@ -1,0 +1,7 @@
+# 排除所有 node_modules（含 pnpm workspace 的 @aura/* 等符号链接，避免 COPY 时报 invalid file request）
+**/node_modules
+frontend/apps/list/dist
+.git
+.gitignore
+*.md
+run.py

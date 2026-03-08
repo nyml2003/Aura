@@ -1,18 +1,23 @@
+# MVP：Node 后端 + Nginx，前端在镜像内构建
+# 一键：python run.py
+
 services:
-  go:
+  node:
     build:
-      context: ./backend
+      context: .
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
-    # 仅用于本地直连调试；生产由 nginx 代理
+      - "4000:4000"
+    environment:
+      - SITE_BASE=http://localhost:9080
+      - PORT=4000
+      - FRONTEND_DIST=/app/frontend/apps/list/dist
 
   nginx:
     image: nginx:alpine
     ports:
-      - "9080:80"   # 开发环境访问 http://localhost:9080
+      - "9080:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./frontend/apps/list/dist:/var/www/frontend:ro
     depends_on:
-      - go
+      - node

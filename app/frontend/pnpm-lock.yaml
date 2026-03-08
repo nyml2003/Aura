@@ -31,21 +31,22 @@ importers:
         specifier: ^2.8.0
         version: 2.11.10(solid-js@1.9.11)(vite@5.4.21)
 
-  packages/contract: {}
-
   packages/page-common:
     dependencies:
       '@aura/contract':
-        specifier: workspace:*
-        version: link:../contract
+        specifier: file:../../../contract
+        version: file:../contract
 
   packages/request-sdk:
     dependencies:
       '@aura/contract':
-        specifier: workspace:*
-        version: link:../contract
+        specifier: file:../../../contract
+        version: file:../contract
 
 packages:
+
+  '@aura/contract@file:../contract':
+    resolution: {directory: ../contract, type: directory}
 
   '@babel/code-frame@7.29.0':
     resolution: {integrity: sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw==}
@@ -632,6 +633,8 @@ packages:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
 
 snapshots:
+
+  '@aura/contract@file:../contract': {}
 
   '@babel/code-frame@7.29.0':
     dependencies:

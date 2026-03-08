@@ -7,6 +7,6 @@
   "types": "./src/index.ts",
   "exports": { ".": "./src/index.ts" },
   "dependencies": {
-    "@aura/contract": "workspace:*"
+    "@aura/contract": "file:../../../contract"
   }
 }
