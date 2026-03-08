@@ -1,36 +1,22 @@
-import { render, hydrate } from 'solid-js/web';
-import { getInitData, isListInitData, isArticleInitData } from '@aura/page-common';
-import { startObserveDOM, logReportAfterStable } from '@aura/performance-sdk';
-import App from './App';
-import ArticlePage from './ArticlePage';
-import './index.css';
+import type { ListInitData } from "@aura/request-sdk";
+import { bootstrap } from "@aura/page-common";
+import { startObserveDOM, logReportAfterStable } from "@aura/performance-sdk";
+import "@aura/design-system/styles.css";
+import { App } from "./App";
+import "./index.css";
 
-const scriptStart = performance.now();
-const root = document.getElementById('root')!;
-const initData = getInitData();
-
-if (!root) {
-  // no-op
-} else if (!initData) {
-  if (!root.hasChildNodes()) {
-    root.innerHTML = '<p>暂无数据</p>';
-  }
-} else if (isListInitData(initData)) {
-  startObserveDOM(root);
-  if (root.hasChildNodes()) {
-    hydrate(() => <App initData={initData} />, root);
-  } else {
-    render(() => <App initData={initData} />, root);
-  }
-  logReportAfterStable(500, scriptStart);
-} else if (isArticleInitData(initData)) {
-  if (root.hasChildNodes()) {
-    hydrate(() => <ArticlePage initData={initData} />, root);
-  } else {
-    render(() => <ArticlePage initData={initData} />, root);
-  }
-} else {
-  if (!root.hasChildNodes()) {
-    root.innerHTML = '<p>未知场景</p>';
-  }
-}
+bootstrap({
+  rootId: "root",
+  pages: {
+    list: (props) => <App initData={props.initData as ListInitData} />,
+  },
+  onNoData: () => {
+    const root = document.getElementById("root");
+    if (root && !root.hasChildNodes()) root.innerHTML = "<p>暂无数据</p>";
+  },
+  onSceneMounted: (scene, root, start) => {
+    if (scene !== "list") return;
+    startObserveDOM(root);
+    logReportAfterStable(32, start);
+  },
+});

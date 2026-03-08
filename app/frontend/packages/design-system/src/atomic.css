@@ -1,0 +1,238 @@
+/**
+ * 原子样式类：单职责，组合使用。依赖 theme.css 变量
+ */
+
+/* Reset / 基础 */
+.aura-box-border { box-sizing: border-box; }
+.aura-block { display: block; }
+.aura-flex { display: flex; }
+.aura-inline-flex { display: inline-flex; }
+.aura-grid { display: grid; }
+.aura-hidden { display: none; }
+
+/* 方向与换行 */
+.aura-flex-col { flex-direction: column; }
+.aura-flex-wrap { flex-wrap: wrap; }
+.aura-items-center { align-items: center; }
+.aura-items-start { align-items: flex-start; }
+.aura-justify-center { justify-content: center; }
+.aura-justify-between { justify-content: space-between; }
+.aura-gap-1 { gap: var(--aura-space-1); }
+.aura-gap-2 { gap: var(--aura-space-2); }
+.aura-gap-3 { gap: var(--aura-space-3); }
+.aura-gap-4 { gap: var(--aura-space-4); }
+.aura-gap-5 { gap: var(--aura-space-5); }
+.aura-gap-6 { gap: var(--aura-space-6); }
+.aura-gap-8 { gap: var(--aura-space-8); }
+
+/* 宽高 */
+.aura-w-full { width: 100%; }
+.aura-min-h-screen { min-height: 100vh; }
+.aura-max-w-prose { max-width: 65ch; }
+.aura-max-w-content { max-width: var(--aura-max-w-content, 720px); }
+.aura-max-w-content-wide { max-width: var(--aura-max-w-content-wide, 960px); }
+.aura-mx-auto { margin-left: auto; margin-right: auto; }
+
+/* 内边距 */
+.aura-p-0 { padding: 0; }
+.aura-p-2 { padding: var(--aura-space-2); }
+.aura-p-3 { padding: var(--aura-space-3); }
+.aura-p-4 { padding: var(--aura-space-4); }
+.aura-p-5 { padding: var(--aura-space-5); }
+.aura-p-6 { padding: var(--aura-space-6); }
+.aura-px-4 { padding-left: var(--aura-space-4); padding-right: var(--aura-space-4); }
+.aura-py-2 { padding-top: var(--aura-space-2); padding-bottom: var(--aura-space-2); }
+.aura-py-4 { padding-top: var(--aura-space-4); padding-bottom: var(--aura-space-4); }
+.aura-py-6 { padding-top: var(--aura-space-6); padding-bottom: var(--aura-space-6); }
+.aura-pt-6 { padding-top: var(--aura-space-6); }
+.aura-pb-4 { padding-bottom: var(--aura-space-4); }
+
+/* 外边距 */
+.aura-m-0 { margin: 0; }
+.aura-mt-1 { margin-top: var(--aura-space-1); }
+.aura-mt-2 { margin-top: var(--aura-space-2); }
+.aura-mt-3 { margin-top: var(--aura-space-3); }
+.aura-mb-2 { margin-bottom: var(--aura-space-2); }
+.aura-mb-4 { margin-bottom: var(--aura-space-4); }
+
+/* 背景 */
+.aura-bg-page { background-color: var(--aura-color-bg); }
+.aura-bg-page-gradient {
+  background: linear-gradient(180deg, var(--aura-color-bg-from, #f0fdfa) 0%, var(--aura-color-bg-to, var(--aura-color-bg)) 30%);
+  background-color: var(--aura-color-bg);
+}
+.aura-bg-elevated { background-color: var(--aura-color-bg-elevated); }
+.aura-bg-primary-muted { background-color: var(--aura-color-primary-muted); }
+.aura-bg-hover:hover { background-color: var(--aura-color-bg-hover); }
+
+/* 文字颜色 */
+.aura-text-fg { color: var(--aura-color-fg); }
+.aura-text-muted { color: var(--aura-color-fg-muted); }
+.aura-text-subtle { color: var(--aura-color-fg-subtle); }
+.aura-text-primary { color: var(--aura-color-primary); }
+.aura-text-primary-hover:hover { color: var(--aura-color-primary-hover); }
+
+/* 字体 */
+.aura-font-sans { font-family: var(--aura-font-sans); }
+.aura-text-xs { font-size: var(--aura-text-xs); }
+.aura-text-sm { font-size: var(--aura-text-sm); }
+.aura-text-base { font-size: var(--aura-text-base); }
+.aura-text-lg { font-size: var(--aura-text-lg); }
+.aura-text-xl { font-size: var(--aura-text-xl); }
+.aura-text-2xl { font-size: var(--aura-text-2xl); }
+.aura-text-3xl { font-size: var(--aura-text-3xl); }
+.aura-font-medium { font-weight: var(--aura-font-medium); }
+.aura-font-semibold { font-weight: var(--aura-font-semibold); }
+.aura-font-bold { font-weight: var(--aura-font-bold); }
+.aura-leading-tight { line-height: var(--aura-leading-tight); }
+.aura-leading-normal { line-height: var(--aura-leading-normal); }
+.aura-leading-relaxed { line-height: var(--aura-leading-relaxed); }
+
+/* 边框 */
+.aura-border { border: 1px solid var(--aura-color-border); }
+.aura-border-strong { border-color: var(--aura-color-border-strong); }
+.aura-border-b { border-bottom: 1px solid var(--aura-color-border); }
+.aura-border-t { border-top: 1px solid var(--aura-color-border); }
+.aura-rounded-sm { border-radius: var(--aura-radius-sm); }
+.aura-rounded-md { border-radius: var(--aura-radius-md); }
+.aura-rounded-lg { border-radius: var(--aura-radius-lg); }
+.aura-rounded-xl { border-radius: var(--aura-radius-xl); }
+
+/* 阴影 */
+.aura-shadow-card { box-shadow: var(--aura-shadow-card); }
+.aura-shadow-card-hover:hover { box-shadow: var(--aura-shadow-card-hover); }
+.aura-shadow-md { box-shadow: var(--aura-shadow-md); }
+
+/* 交互 */
+.aura-transition { transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease; }
+.aura-transition-all { transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease; }
+.aura-no-underline { text-decoration: none; }
+.aura-list-none { list-style: none; }
+
+/* 链接/卡片：组合用 */
+.aura-link-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+.aura-link-card:hover {
+  box-shadow: var(--aura-shadow-card-hover);
+  background-color: var(--aura-color-bg-elevated);
+}
+
+/* 卡片：左侧主色条 + 悬停上浮 */
+.aura-card-accent {
+  border-left: 4px solid var(--aura-color-primary);
+}
+.aura-card-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--aura-shadow-card-lift);
+  border-color: var(--aura-color-primary-muted);
+}
+
+/* 无边框的页头/页脚（仅留白与字重区分） */
+.aura-header-soft {
+  padding-top: var(--aura-space-8);
+  padding-bottom: var(--aura-space-8);
+  margin-bottom: 0;
+}
+.aura-header-title-accent {
+  color: var(--aura-color-primary);
+  background: linear-gradient(135deg, var(--aura-color-fg) 0%, var(--aura-color-primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: var(--aura-font-bold);
+}
+.aura-footer-soft {
+  padding-top: var(--aura-space-8);
+  padding-bottom: var(--aura-space-8);
+  margin-top: auto;
+  color: var(--aura-color-fg-subtle);
+  font-size: var(--aura-text-sm);
+}
+
+/* PC 端：宽内容区 + 大屏更多内边距 */
+@media (min-width: 1024px) {
+  .aura-px-4.aura-desktop-px-10 {
+    padding-left: var(--aura-space-10);
+    padding-right: var(--aura-space-10);
+  }
+}
+
+/* 列表网格：移动端单列，PC 端双列 */
+.aura-list-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--aura-space-5);
+}
+@media (min-width: 960px) {
+  .aura-list-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--aura-space-6);
+  }
+}
+
+/* ========== Sticky 布局 ========== */
+/* 外层：flex 列、占满视口，保证 footer 贴底 */
+.aura-sticky-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Sticky 顶栏：吸顶，可叠加（第二个用 aura-sticky-header-2） */
+.aura-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--aura-sticky-z);
+  min-height: var(--aura-sticky-header-height);
+  background: var(--aura-sticky-bar-bg);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--aura-sticky-bar-border);
+  box-shadow: var(--aura-sticky-bar-shadow);
+}
+/* 第二层顶栏（如工具栏）：叠在第一层下方 */
+.aura-sticky-header-2 {
+  position: sticky;
+  top: var(--aura-sticky-header-height);
+  z-index: calc(var(--aura-sticky-z) - 1);
+  min-height: var(--aura-sticky-footer-height);
+  background: var(--aura-sticky-bar-bg);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--aura-sticky-bar-border);
+}
+
+/* 主内容区：自动推出，不被顶/底栏遮挡 */
+.aura-sticky-section {
+  flex: 1;
+  padding-top: var(--aura-sticky-header-height);
+  padding-bottom: var(--aura-sticky-footer-height);
+  min-height: 0;
+}
+
+/* Sticky 底栏：吸底 */
+.aura-sticky-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: var(--aura-sticky-z);
+  min-height: var(--aura-sticky-footer-height);
+  background: var(--aura-sticky-bar-bg);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-top: 1px solid var(--aura-sticky-bar-border);
+  box-shadow: 0 -1px 3px rgba(28, 25, 23, 0.06);
+}
+[data-theme="dark"] .aura-sticky-footer {
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 可叠加 Sticky 栈：单条仅 position + z-index，top 由 StickyStack 组件内联 */
+.aura-sticky-stack-item {
+  position: sticky;
+  z-index: var(--aura-sticky-z);
+}

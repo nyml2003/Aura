@@ -17,27 +17,30 @@ export interface PageHtmlOptions {
 }
 
 export function listPageHtml(initData: ListInitData, options: PageHtmlOptions = {}): string {
-  return pageShell("文章列表", initData, options);
+  return pageShell("文章列表", initData, options, "list");
 }
 
 export function articlePageHtml(initData: ArticleInitData, options: PageHtmlOptions = {}): string {
-  return pageShell(initData.article.title, initData, options);
+  return pageShell(initData.article.title, initData, options, "article");
 }
 
+/** appKind: "list" 用 /assets/，"article" 用 /assets-article/（MPA 各自 bundle） */
 function pageShell(
   pageTitle: string,
   initData: ListInitData | ArticleInitData,
-  options: PageHtmlOptions = {}
+  options: PageHtmlOptions = {},
+  appKind: "list" | "article" = "list"
 ): string {
   const payload = escapeScriptPayload(JSON.stringify(initData));
   const generatedAt = options.serverGeneratedAt ?? Date.now();
+  const assetsBase = appKind === "article" ? "/assets-article" : "/assets";
   return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${escapeHtml(pageTitle)}</title>
-  <link rel="stylesheet" href="/assets/index.css" />
+  <link rel="stylesheet" href="${assetsBase}/index.css" />
 </head>
 <body>
   <div id="root"></div>
@@ -51,7 +54,7 @@ function pageShell(
       }
     })();
   </script>
-  <script type="module" src="/assets/index.js"></script>
+  <script type="module" src="${assetsBase}/index.js"></script>
 </body>
 </html>`;
 }

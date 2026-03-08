@@ -1,0 +1,16 @@
+/**
+ * 设计系统入口：reset + 主题 + 原子类
+ * 业务只需 import '@aura/design-system/styles.css' 或分别引入 reset.css / theme.css / atomic.css
+ */
+@import "./reset.css";
+@import "./theme.css";
+@import "./atomic.css";
+
+/* 挂载在 .aura-root 时的默认字体与色彩 */
+.aura-root {
+  font-family: var(--aura-font-sans);
+  line-height: var(--aura-leading-normal);
+  color: var(--aura-color-fg);
+  background-color: var(--aura-color-bg);
+  -webkit-font-smoothing: antialiased;
+}

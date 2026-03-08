@@ -1,0 +1,102 @@
+/**
+ * 主题变量：颜色、间距、圆角、字体等，供原子类与业务覆盖
+ */
+:root {
+  /* 主色：偏青绿，更有辨识度 */
+  --aura-color-primary: #0d9488;
+  --aura-color-primary-hover: #0f766e;
+  --aura-color-primary-muted: #ccfbf1;
+  --aura-color-accent: #ea580c;
+  --aura-color-accent-muted: #ffedd5;
+
+  /* 中性色：略暖灰 */
+  --aura-color-fg: #1c1917;
+  --aura-color-fg-muted: #57534e;
+  --aura-color-fg-subtle: #78716c;
+  --aura-color-border: #e7e5e4;
+  --aura-color-border-strong: #d6d3d1;
+  --aura-color-bg: #fafaf9;
+  --aura-color-bg-elevated: #ffffff;
+  --aura-color-bg-hover: #f5f5f4;
+  /* 页面渐变用 */
+  --aura-color-bg-from: #f0fdfa;
+  --aura-color-bg-to: #fafaf9;
+
+  /* 间距（4px 基准） */
+  --aura-space-1: 0.25rem;  /* 4px */
+  --aura-space-2: 0.5rem;   /* 8px */
+  --aura-space-3: 0.75rem; /* 12px */
+  --aura-space-4: 1rem;    /* 16px */
+  --aura-space-5: 1.25rem;
+  --aura-space-6: 1.5rem;
+  --aura-space-8: 2rem;
+  --aura-space-10: 2.5rem;
+  --aura-space-12: 3rem;
+
+  /* 圆角 */
+  --aura-radius-sm: 6px;
+  --aura-radius-md: 10px;
+  --aura-radius-lg: 14px;
+  --aura-radius-xl: 20px;
+  --aura-radius-full: 9999px;
+
+  /* 字体 */
+  --aura-font-sans: "Inter", "SF Pro Text", system-ui, -apple-system, sans-serif;
+  --aura-font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+  --aura-text-xs: 0.75rem;
+  --aura-text-sm: 0.875rem;
+  --aura-text-base: 1rem;
+  --aura-text-lg: 1.125rem;
+  --aura-text-xl: 1.25rem;
+  --aura-text-2xl: 1.5rem;
+  --aura-text-3xl: 1.875rem;
+  --aura-leading-tight: 1.25;
+  --aura-leading-normal: 1.5;
+  --aura-leading-relaxed: 1.625;
+  --aura-font-medium: 500;
+  --aura-font-semibold: 600;
+  --aura-font-bold: 700;
+
+  /* 阴影：略加深，层次更明显 */
+  --aura-shadow-sm: 0 1px 3px rgba(28, 25, 23, 0.06);
+  --aura-shadow-md: 0 4px 12px rgba(28, 25, 23, 0.08), 0 2px 4px rgba(28, 25, 23, 0.04);
+  --aura-shadow-lg: 0 12px 24px -4px rgba(28, 25, 23, 0.1), 0 6px 12px -4px rgba(28, 25, 23, 0.06);
+  --aura-shadow-card: 0 2px 8px rgba(28, 25, 23, 0.06), 0 1px 2px rgba(28, 25, 23, 0.04);
+  --aura-shadow-card-hover: 0 8px 24px rgba(28, 25, 23, 0.1), 0 2px 8px rgba(28, 25, 23, 0.06);
+  --aura-shadow-card-lift: 0 12px 32px -8px rgba(13, 148, 136, 0.15), 0 4px 12px rgba(28, 25, 23, 0.08);
+
+  /* 布局（PC 端更宽内容区） */
+  --aura-max-w-content: 720px;
+  --aura-max-w-content-wide: 960px;
+  --aura-breakpoint-md: 768px;
+  --aura-breakpoint-lg: 1024px;
+
+  /* Sticky 布局：高度与层级，StickySection 用来自动推出内容区 */
+  --aura-sticky-header-height: 6rem;
+  --aura-sticky-footer-height: 3.5rem;
+  --aura-sticky-z: 20;
+  --aura-sticky-bar-bg: rgba(250, 250, 249, 0.92);
+  --aura-sticky-bar-border: rgba(231, 229, 228, 0.8);
+  --aura-sticky-bar-shadow: 0 1px 3px rgba(28, 25, 23, 0.06);
+}
+
+/* 可选：暗色主题 */
+[data-theme="dark"] {
+  --aura-color-fg: #fafaf9;
+  --aura-color-fg-muted: #a8a29e;
+  --aura-color-fg-subtle: #78716c;
+  --aura-color-border: #44403c;
+  --aura-color-border-strong: #57534e;
+  --aura-color-bg: #1c1917;
+  --aura-color-bg-elevated: #292524;
+  --aura-color-bg-hover: #44403c;
+  --aura-color-bg-from: #134e4a;
+  --aura-color-bg-to: #1c1917;
+  --aura-color-primary-muted: #134e4a;
+  --aura-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --aura-shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --aura-shadow-card-lift: 0 12px 32px -8px rgba(13, 148, 136, 0.25), 0 4px 12px rgba(0, 0, 0, 0.3);
+  --aura-sticky-bar-bg: rgba(28, 25, 23, 0.94);
+  --aura-sticky-bar-border: rgba(68, 64, 60, 0.8);
+  --aura-sticky-bar-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}

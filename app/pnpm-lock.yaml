@@ -6,14 +6,53 @@ settings:
 
 importers:
 
-  .:
+  .: {}
+
+  contract:
     devDependencies:
       typescript:
         specifier: ^5.3.0
         version: 5.9.3
 
-  apps/list:
+  frontend:
+    devDependencies:
+      typescript:
+        specifier: ^5.3.0
+        version: 5.9.3
+
+  frontend/apps/article:
     dependencies:
+      '@aura/app-common':
+        specifier: workspace:*
+        version: link:../../packages/app-common
+      '@aura/design-system':
+        specifier: workspace:*
+        version: link:../../packages/design-system
+      '@aura/page-common':
+        specifier: workspace:*
+        version: link:../../packages/page-common
+      '@aura/request-sdk':
+        specifier: workspace:*
+        version: link:../../packages/request-sdk
+      '@aura/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      solid-js:
+        specifier: ^1.8.0
+        version: 1.9.11
+    devDependencies:
+      vite:
+        specifier: ^5.0.0
+        version: 5.4.21
+      vite-plugin-solid:
+        specifier: ^2.8.0
+        version: 2.11.10(solid-js@1.9.11)(vite@5.4.21)
+
+  frontend/apps/list:
+    dependencies:
+      '@aura/app-common':
+        specifier: workspace:*
+        version: link:../../packages/app-common
       '@aura/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
@@ -40,32 +79,44 @@ importers:
         specifier: ^2.8.0
         version: 2.11.10(solid-js@1.9.11)(vite@5.4.21)
 
-  packages/design-system: {}
+  frontend/packages/app-common:
+    dependencies:
+      '@aura/ui':
+        specifier: workspace:*
+        version: link:../ui
+      solid-js:
+        specifier: ^1.8.0
+        version: 1.9.11
 
-  packages/page-common:
+  frontend/packages/design-system: {}
+
+  frontend/packages/page-common:
     dependencies:
       '@aura/contract':
-        specifier: file:../../../contract
-        version: file:../contract
+        specifier: workspace:*
+        version: link:../../../contract
+      '@aura/request-sdk':
+        specifier: workspace:*
+        version: link:../request-sdk
+      solid-js:
+        specifier: ^1.9.0
+        version: 1.9.11
 
-  packages/performance-sdk: {}
+  frontend/packages/performance-sdk: {}
 
-  packages/request-sdk:
+  frontend/packages/request-sdk:
     dependencies:
       '@aura/contract':
-        specifier: file:../../../contract
-        version: file:../contract
+        specifier: workspace:*
+        version: link:../../../contract
 
-  packages/ui:
+  frontend/packages/ui:
     dependencies:
       solid-js:
         specifier: ^1.8.0
         version: 1.9.11
 
 packages:
-
-  '@aura/contract@file:../contract':
-    resolution: {directory: ../contract, type: directory}
 
   '@babel/code-frame@7.29.0':
     resolution: {integrity: sha512-9NhCeYjq9+3uxgdtp20LSiJXJvN0FeCtNGpJxuMFZ1Kv3cWUNb6DOhJwUvcVCzKGR66cw4njwM6hrJLqgOwbcw==}
@@ -652,8 +703,6 @@ packages:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
 
 snapshots:
-
-  '@aura/contract@file:../contract': {}
 
   '@babel/code-frame@7.29.0':
     dependencies:

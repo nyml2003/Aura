@@ -55,3 +55,9 @@ export function isArticleInitData(data: InitData): data is ArticleInitData {
 }
 
 export type { InitData, ListInitData, ArticleInitData };
+
+export {
+  bootstrap,
+  type BootstrapOptions,
+  type PageComponents,
+} from "./bootstrap";

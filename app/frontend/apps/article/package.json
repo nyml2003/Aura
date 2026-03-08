@@ -1,5 +1,5 @@
 {
-  "name": "@aura/app-list",
+  "name": "@aura/app-article",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -12,7 +12,6 @@
     "@aura/app-common": "workspace:*",
     "@aura/design-system": "workspace:*",
     "@aura/page-common": "workspace:*",
-    "@aura/performance-sdk": "workspace:*",
     "@aura/request-sdk": "workspace:*",
     "@aura/ui": "workspace:*",
     "solid-js": "^1.8.0"

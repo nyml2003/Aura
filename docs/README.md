@@ -19,6 +19,8 @@
 | **[09-url-routing-and-links.md](./09-url-routing-and-links.md)** | **URL/路由设计与链接规则**：语义化 path、scenecode 对应、链接由系统生成并下发为完整 URL 的规则。 |
 | **[10-api-contract.md](./10-api-contract.md)** | **前后端 API 契约**：首屏数据与异步 API 的通用结构、链接在响应中的位置；Item 领域模型后续在文档内补充。 |
 | **[11-backend-mvp-solidstart.md](./11-backend-mvp-solidstart.md)** | **MVP 后端方案**：Node + SolidStart 单进程，网关/业务层/SSR 划分、目录结构、与 09/10 对齐、一次性删除 Go/Deno 的清单与验收。 |
+| **[12-visual-design-system.md](./12-visual-design-system.md)** | **整体视觉设计**：设计原则、设计令牌（颜色/间距/字体/阴影/断点）、布局约定（全宽 vs 限宽、横向留白、Sticky）、通用组件形态、主题与暗色；与 design-system 实现的对应关系。 |
+| **[13-mvp-list-page-visual-design.md](./13-mvp-list-page-visual-design.md)** | **MVP 列表页视觉设计**：列表页布局结构、内容带与横向留白、Header/Section/Footer 与卡片规格、响应式与主题、设计决策记录；实现对应关系。 |
 
 ---
 
