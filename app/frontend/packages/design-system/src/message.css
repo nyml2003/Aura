@@ -1,0 +1,28 @@
+/**
+ * Message 提示框：与 @aura/ui Message 组件配合使用
+ */
+.aura-message {
+  padding: var(--aura-space-3) var(--aura-space-4);
+  border-radius: var(--aura-radius-md);
+  border: 1px solid;
+  font-size: var(--aura-text-sm);
+  line-height: 1.5;
+}
+
+.aura-message-error {
+  background: var(--aura-color-error-muted);
+  color: var(--aura-color-error);
+  border-color: var(--aura-color-border-strong);
+}
+
+.aura-message-info {
+  background: var(--aura-color-primary-muted);
+  color: var(--aura-color-fg);
+  border-color: var(--aura-color-border-strong);
+}
+
+.aura-message-success {
+  background: var(--aura-color-success-muted, var(--aura-color-primary-muted));
+  color: var(--aura-color-success, var(--aura-color-primary));
+  border-color: var(--aura-color-border-strong);
+}

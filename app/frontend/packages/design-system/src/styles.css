@@ -5,6 +5,8 @@
 @import "./reset.css";
 @import "./theme.css";
 @import "./atomic.css";
+@import "./button.css";
+@import "./message.css";
 
 /* 挂载在 .aura-root 时的默认字体与色彩 */
 .aura-root {

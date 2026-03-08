@@ -1,10 +1,11 @@
 /**
- * 接口化请求：POST /page 或 GET 语义化 path，与 BFF 约定一致
+ * 接口化请求：POST /page 或 GET 语义化 path，与 BFF 约定一致；内部使用 createClient
  */
 import type { InitData } from "@aura/contract";
 import { SceneCode } from "@aura/contract";
 import { getSceneCodeFromPath, getPageParamsFromPath } from "./path";
 import type { PageParams } from "./path";
+import { createClient } from "./client";
 
 /** POST /page 的请求体（可选，用于接口化请求） */
 export interface PageRequest {
@@ -24,21 +25,18 @@ export interface RequestPageOptions {
 }
 
 /**
- * 请求首屏数据：GET 语义化 path 或 POST /page，返回 InitData
+ * 请求首屏数据：GET 语义化 path 或 POST /page，返回 InitData；失败或解析失败返回 null。
  */
 export async function requestPage(options: RequestPageOptions): Promise<InitData | null> {
   const { baseUrl, scenecode, params, usePost = false } = options;
-  const base = baseUrl.replace(/\/$/, "");
+  const client = createClient(baseUrl);
 
   if (usePost) {
-    const res = await fetch(`${base}/page`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ scenecode, params: params ?? {} }),
+    const result = await client.post<InitData | null>("/page", {
+      scenecode,
+      params: params ?? {},
     });
-    if (!res.ok) return null;
-    const data = (await res.json()) as InitData | null;
-    return data;
+    return result.ok ? result.value : null;
   }
 
   let path: string;
@@ -58,10 +56,9 @@ export async function requestPage(options: RequestPageOptions): Promise<InitData
     default:
       path = "/list";
   }
-  const res = await fetch(`${base}${path}`);
-  if (!res.ok) return null;
-  const html = await res.text();
-  const doc = new DOMParser().parseFromString(html, "text/html");
+  const textResult = await client.getText(path);
+  if (!textResult.ok) return null;
+  const doc = new DOMParser().parseFromString(textResult.value, "text/html");
   const el = doc.getElementById("__INIT_DATA__");
   if (!el?.textContent) return null;
   try {

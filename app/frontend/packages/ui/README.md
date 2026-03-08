@@ -31,3 +31,49 @@ import '@aura/design-system/styles.css';
 - **StickyFooter**：吸底栏（`<footer>`）。
 
 所有组件支持 `class`、`classList`、`children`。
+
+## Button
+
+Material UI 风格：**variant** 控制形态，**color** 控制语义色。
+
+- **variant**：`contained`（实心）、`outlined`（描边）、`text`（纯文字，无边框）。
+- **color**：`primary`（主色）、`secondary`（次要灰）、`error`（错误/危险）、`inherit`（继承）。
+- **href**：有值时渲染为 `<a>`，用于「取消」「编辑」等跳转。
+- **loading** / **disabled**：加载态与禁用。
+
+```tsx
+<Button variant="contained" color="primary" onClick={save}>保存</Button>
+<Button variant="text" color="primary" href="/admin">取消</Button>
+<Button variant="text" color="error" onClick={onDelete}>删除</Button>
+<Button variant="outlined" color="primary">次要操作</Button>
+```
+
+## Table
+
+表格容器 + 表头/表体/行/单元格，统一边框、内边距与行 hover。
+
+- **Table**：外层 `div` 横向滚动 + `<table>`。
+- **Table.Head**：`<thead>`。
+- **Table.HeadRow**：表头行（无 hover，与 Body 行区分）。
+- **Table.Body**：`<tbody>`。
+- **Table.Row**：表体行（带 hover）。
+- **Table.Th / Table.Td**：表头单元 / 表体单元，支持 `class` 扩展列宽等。
+
+```tsx
+<Table>
+  <Table.Head>
+    <Table.HeadRow>
+      <Table.Th>标题</Table.Th>
+      <Table.Th class="aura-w-32">操作</Table.Th>
+    </Table.HeadRow>
+  </Table.Head>
+  <Table.Body>
+    {rows.map((row) => (
+      <Table.Row>
+        <Table.Td>{row.title}</Table.Td>
+        <Table.Td>...</Table.Td>
+      </Table.Row>
+    ))}
+  </Table.Body>
+</Table>
+```

@@ -1,0 +1,137 @@
+/**
+ * 按钮：基于 data-aura-btn + data-variant + data-color，hover/focus 由 design-system 统一提供
+ * 与 @aura/ui Button 组件配合使用
+ */
+[data-aura-btn] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--aura-space-2) var(--aura-space-4);
+  font-size: var(--aura-text-base);
+  font-weight: var(--aura-font-medium);
+  line-height: 1.5;
+  border-radius: var(--aura-radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+[data-aura-btn][data-variant="text"] {
+  font-size: var(--aura-text-sm);
+  border: none;
+}
+
+[data-aura-btn]:disabled,
+[data-aura-btn][aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+[data-aura-btn][aria-disabled="true"] {
+  pointer-events: none;
+}
+
+/* contained + primary */
+[data-aura-btn][data-variant="contained"][data-color="primary"] {
+  background: var(--aura-color-primary);
+  color: #fff;
+  border-color: var(--aura-color-primary);
+}
+[data-aura-btn][data-variant="contained"][data-color="primary"]:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--aura-color-primary-hover);
+  border-color: var(--aura-color-primary-hover);
+}
+[data-aura-btn][data-variant="contained"][data-color="primary"]:focus-visible {
+  box-shadow: 0 0 0 2px var(--aura-color-bg), 0 0 0 4px var(--aura-color-primary);
+}
+
+/* contained + error */
+[data-aura-btn][data-variant="contained"][data-color="error"] {
+  background: var(--aura-color-error);
+  color: #fff;
+  border-color: var(--aura-color-error);
+}
+[data-aura-btn][data-variant="contained"][data-color="error"]:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--aura-color-error-hover);
+  border-color: var(--aura-color-error-hover);
+}
+[data-aura-btn][data-variant="contained"][data-color="error"]:focus-visible {
+  box-shadow: 0 0 0 2px var(--aura-color-bg), 0 0 0 4px var(--aura-color-error);
+}
+
+/* contained + secondary */
+[data-aura-btn][data-variant="contained"][data-color="secondary"],
+[data-aura-btn][data-variant="contained"][data-color="inherit"] {
+  background: var(--aura-color-bg-elevated);
+  color: var(--aura-color-fg);
+  border-color: var(--aura-color-border);
+}
+[data-aura-btn][data-variant="contained"][data-color="secondary"]:hover:not(:disabled):not([aria-disabled="true"]),
+[data-aura-btn][data-variant="contained"][data-color="inherit"]:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--aura-color-bg-hover);
+  border-color: var(--aura-color-border-strong);
+}
+
+/* outlined + primary */
+[data-aura-btn][data-variant="outlined"][data-color="primary"] {
+  background: transparent;
+  color: var(--aura-color-primary);
+  border-color: var(--aura-color-primary);
+}
+[data-aura-btn][data-variant="outlined"][data-color="primary"]:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--aura-color-primary-hover-bg);
+}
+[data-aura-btn][data-variant="outlined"][data-color="primary"]:focus-visible {
+  box-shadow: 0 0 0 2px var(--aura-color-primary-hover-bg);
+}
+
+/* outlined + error */
+[data-aura-btn][data-variant="outlined"][data-color="error"] {
+  background: transparent;
+  color: var(--aura-color-error);
+  border-color: var(--aura-color-error);
+}
+[data-aura-btn][data-variant="outlined"][data-color="error"]:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--aura-color-error-hover-bg);
+}
+
+/* outlined + secondary / inherit */
+[data-aura-btn][data-variant="outlined"][data-color="secondary"],
+[data-aura-btn][data-variant="outlined"][data-color="inherit"] {
+  background: transparent;
+  color: var(--aura-color-fg-muted);
+  border-color: var(--aura-color-border);
+}
+[data-aura-btn][data-variant="outlined"][data-color="secondary"]:hover:not(:disabled):not([aria-disabled="true"]),
+[data-aura-btn][data-variant="outlined"][data-color="inherit"]:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--aura-color-secondary-hover-bg);
+}
+
+/* text + primary */
+[data-aura-btn][data-variant="text"][data-color="primary"] {
+  background: transparent;
+  color: var(--aura-color-primary);
+}
+[data-aura-btn][data-variant="text"][data-color="primary"]:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--aura-color-primary-hover-bg);
+}
+
+/* text + error */
+[data-aura-btn][data-variant="text"][data-color="error"] {
+  background: transparent;
+  color: var(--aura-color-error);
+}
+[data-aura-btn][data-variant="text"][data-color="error"]:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--aura-color-error-hover-bg);
+}
+
+/* text + secondary / inherit */
+[data-aura-btn][data-variant="text"][data-color="secondary"],
+[data-aura-btn][data-variant="text"][data-color="inherit"] {
+  background: transparent;
+  color: var(--aura-color-fg-muted);
+}
+[data-aura-btn][data-variant="text"][data-color="secondary"]:hover:not(:disabled):not([aria-disabled="true"]),
+[data-aura-btn][data-variant="text"][data-color="inherit"]:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--aura-color-secondary-hover-bg);
+}

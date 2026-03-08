@@ -20,17 +20,61 @@ importers:
         specifier: ^5.3.0
         version: 5.9.3
 
-  frontend/apps/admin:
+  frontend/apps/admin-edit:
     dependencies:
-      '@aura/app-common':
+      '@aura/admin-common':
         specifier: workspace:*
-        version: link:../../packages/app-common
+        version: link:../../packages/admin-common
       '@aura/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
-      '@aura/ui':
+      '@aura/request-sdk':
         specifier: workspace:*
-        version: link:../../packages/ui
+        version: link:../../packages/request-sdk
+      solid-js:
+        specifier: ^1.8.0
+        version: 1.9.11
+    devDependencies:
+      vite:
+        specifier: ^5.0.0
+        version: 5.4.21
+      vite-plugin-solid:
+        specifier: ^2.8.0
+        version: 2.11.10(solid-js@1.9.11)(vite@5.4.21)
+
+  frontend/apps/admin-list:
+    dependencies:
+      '@aura/admin-common':
+        specifier: workspace:*
+        version: link:../../packages/admin-common
+      '@aura/design-system':
+        specifier: workspace:*
+        version: link:../../packages/design-system
+      '@aura/request-sdk':
+        specifier: workspace:*
+        version: link:../../packages/request-sdk
+      solid-js:
+        specifier: ^1.8.0
+        version: 1.9.11
+    devDependencies:
+      vite:
+        specifier: ^5.0.0
+        version: 5.4.21
+      vite-plugin-solid:
+        specifier: ^2.8.0
+        version: 2.11.10(solid-js@1.9.11)(vite@5.4.21)
+
+  frontend/apps/admin-new:
+    dependencies:
+      '@aura/admin-common':
+        specifier: workspace:*
+        version: link:../../packages/admin-common
+      '@aura/design-system':
+        specifier: workspace:*
+        version: link:../../packages/design-system
+      '@aura/request-sdk':
+        specifier: workspace:*
+        version: link:../../packages/request-sdk
       solid-js:
         specifier: ^1.8.0
         version: 1.9.11
@@ -101,6 +145,24 @@ importers:
         specifier: ^2.8.0
         version: 2.11.10(solid-js@1.9.11)(vite@5.4.21)
 
+  frontend/packages/admin-common:
+    dependencies:
+      '@aura/app-common':
+        specifier: workspace:*
+        version: link:../app-common
+      '@aura/design-system':
+        specifier: workspace:*
+        version: link:../design-system
+      '@aura/request-sdk':
+        specifier: workspace:*
+        version: link:../request-sdk
+      '@aura/ui':
+        specifier: workspace:*
+        version: link:../ui
+      solid-js:
+        specifier: ^1.8.0
+        version: 1.9.11
+
   frontend/packages/app-common:
     dependencies:
       '@aura/ui':
@@ -131,6 +193,9 @@ importers:
       '@aura/contract':
         specifier: workspace:*
         version: link:../../../contract
+      solid-js:
+        specifier: ^1.8.0
+        version: 1.9.11
 
   frontend/packages/ui:
     dependencies:

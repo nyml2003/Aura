@@ -5,11 +5,15 @@
   "scripts": {
     "build:list": "pnpm --filter @aura/app-list build",
     "build:article": "pnpm --filter @aura/app-article build",
-    "build": "pnpm run build:list && pnpm run build:article && pnpm run build:admin",
-    "build:admin": "pnpm --filter @aura/app-admin build",
+    "build": "pnpm run build:list && pnpm run build:article && pnpm run build:admin-list && pnpm run build:admin-new && pnpm run build:admin-edit",
+    "build:admin-list": "pnpm --filter @aura/app-admin-list build",
+    "build:admin-new": "pnpm --filter @aura/app-admin-new build",
+    "build:admin-edit": "pnpm --filter @aura/app-admin-edit build",
     "dev": "pnpm --filter @aura/app-list dev",
     "dev:list": "pnpm --filter @aura/app-list dev",
     "dev:article": "pnpm --filter @aura/app-article dev",
-    "dev:admin": "pnpm --filter @aura/app-admin dev"
+    "dev:admin-list": "pnpm --filter @aura/app-admin-list dev",
+    "dev:admin-new": "pnpm --filter @aura/app-admin-new dev",
+    "dev:admin-edit": "pnpm --filter @aura/app-admin-edit dev"
   }
 }

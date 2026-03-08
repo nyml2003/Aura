@@ -8,6 +8,14 @@
   --aura-color-primary-muted: #ccfbf1;
   --aura-color-accent: #ea580c;
   --aura-color-accent-muted: #ffedd5;
+  /** 语义色：错误/危险（删除等） */
+  --aura-color-error: #b91c1c;
+  --aura-color-error-hover: #991b1b;
+  --aura-color-error-muted: #fef2f2;
+  /** 按钮 hover 浅色底（outlined / text 用） */
+  --aura-color-primary-hover-bg: rgba(13, 148, 136, 0.08);
+  --aura-color-error-hover-bg: rgba(185, 28, 28, 0.08);
+  --aura-color-secondary-hover-bg: rgba(28, 25, 23, 0.04);
 
   /* 中性色：略暖灰 */
   --aura-color-fg: #1c1917;
@@ -93,6 +101,12 @@
   --aura-color-bg-from: #134e4a;
   --aura-color-bg-to: #1c1917;
   --aura-color-primary-muted: #134e4a;
+  --aura-color-error: #ef4444;
+  --aura-color-error-hover: #dc2626;
+  --aura-color-error-muted: #450a0a;
+  --aura-color-primary-hover-bg: rgba(13, 148, 136, 0.16);
+  --aura-color-error-hover-bg: rgba(239, 68, 68, 0.16);
+  --aura-color-secondary-hover-bg: rgba(250, 250, 249, 0.08);
   --aura-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
   --aura-shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.4);
   --aura-shadow-card-lift: 0 12px 32px -8px rgba(13, 148, 136, 0.25), 0 4px 12px rgba(0, 0, 0, 0.3);

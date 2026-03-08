@@ -1,5 +1,5 @@
 {
-  "name": "@aura/app-admin",
+  "name": "@aura/app-admin-list",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@aura/app-common": "workspace:*",
+    "@aura/admin-common": "workspace:*",
     "@aura/design-system": "workspace:*",
-    "@aura/ui": "workspace:*",
+    "@aura/request-sdk": "workspace:*",
     "solid-js": "^1.8.0"
   },
   "devDependencies": {
