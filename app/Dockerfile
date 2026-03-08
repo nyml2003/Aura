@@ -5,14 +5,16 @@ FROM node:20-bookworm-slim
 WORKDIR /app
 
 COPY contract contract
+COPY site site
 COPY frontend frontend
 COPY backend backend
 
 # 统一使用 pnpm
 RUN corepack enable && corepack prepare pnpm@9.0.0 --activate
 
-# 契约包构建（产出 dist，供 backend 引用）
+# 契约与站点 base 包
 RUN cd contract && pnpm install && pnpm run build
+RUN cd site && pnpm install && pnpm run build
 
 # 前端依赖与构建
 RUN cd frontend && pnpm install && pnpm run build:list
@@ -24,4 +26,5 @@ ENV FRONTEND_DIST=/app/frontend/apps/list/dist
 ENV PORT=4000
 
 EXPOSE 4000
-CMD ["node", "backend/dist/index.js"]
+# 启动时注入 base URL：容器内默认用 nginx 对外地址，可覆盖
+CMD ["node", "backend/dist/index.js", "http://localhost:9080"]

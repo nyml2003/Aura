@@ -7,10 +7,10 @@ export const SceneCode = {
   home: "home",
 } as const;
 
+export type SceneCodeType = (typeof SceneCode)[keyof typeof SceneCode];
+
 /** path 与 scenecode 映射（MVP 仅 list） */
-export const PATH_SCENECODE: Record<string, (typeof SceneCode)[keyof typeof SceneCode]> = {
+export const PATH_SCENECODE: Record<string, SceneCodeType> = {
   "/": "list",
   "/list": "list",
 };
-
-export type SceneCodeType = (typeof SceneCode)[keyof typeof SceneCode];

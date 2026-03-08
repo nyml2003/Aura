@@ -17,6 +17,9 @@ importers:
       '@aura/page-common':
         specifier: workspace:*
         version: link:../../packages/page-common
+      '@aura/performance-sdk':
+        specifier: workspace:*
+        version: link:../../packages/performance-sdk
       '@aura/request-sdk':
         specifier: workspace:*
         version: link:../../packages/request-sdk
@@ -36,6 +39,8 @@ importers:
       '@aura/contract':
         specifier: file:../../../contract
         version: file:../contract
+
+  packages/performance-sdk: {}
 
   packages/request-sdk:
     dependencies:

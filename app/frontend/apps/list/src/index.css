@@ -69,7 +69,34 @@ body {
   margin: 0 0 0.5rem;
   font-size: 1.1rem;
   font-weight: 600;
-  color: yellow;
+}
+
+.back-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.article-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.article-meta {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.article-body {
+  font-size: 1rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
 }
 
 .card-summary {

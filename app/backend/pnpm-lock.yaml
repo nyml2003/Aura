@@ -11,6 +11,9 @@ importers:
       '@aura/contract':
         specifier: file:../contract
         version: file:../contract
+      '@aura/site':
+        specifier: file:../site
+        version: file:../site
       express:
         specifier: ^4.21.0
         version: 4.22.1
@@ -32,6 +35,9 @@ packages:
 
   '@aura/contract@file:../contract':
     resolution: {directory: ../contract, type: directory}
+
+  '@aura/site@file:../site':
+    resolution: {directory: ../site, type: directory}
 
   '@esbuild/aix-ppc64@0.27.3':
     resolution: {integrity: sha512-9fJMTNFTWZMh5qwrBItuziu834eOCUcEqymSH7pY+zoMVEZg3gcPuBNxH1EvfVYe9h0x/Ptw8KBzv7qxb7l8dg==}
@@ -521,6 +527,8 @@ packages:
 snapshots:
 
   '@aura/contract@file:../contract': {}
+
+  '@aura/site@file:../site': {}
 
   '@esbuild/aix-ppc64@0.27.3':
     optional: true

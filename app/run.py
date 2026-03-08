@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
 MVP 一键启动：Docker Compose 构建并启动 Node 后端 + Nginx。
-镜像内会构建 contract、frontend、backend-node。
+镜像内会构建 contract、site、frontend、backend。
 需已安装：Docker。
 用法：在 app 目录下执行  python run.py  或  python3 run.py
 启动后访问: http://localhost:9080/ 或 http://localhost:9080/list
+本地开发（不 Docker）：后端默认 BASE URL 为 http://localhost:4000，端口 4000。
 """
 from __future__ import print_function
 
@@ -37,7 +38,7 @@ def main():
     os.chdir(APP_DIR)
 
     print("启动 Docker（Node 后端 + Nginx）…")
-    print("启动后访问: http://localhost:9080/ 或 http://localhost:9080/list")
+    print("启动后访问: http://localhost:9080/（Docker）；本地开发为 http://localhost:4000/")
     run(["docker", "compose", "up", "--build"], cwd=APP_DIR, description="启动服务…")
 
 

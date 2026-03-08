@@ -6,12 +6,8 @@
     "outDir": "dist",
     "rootDir": "src",
     "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@aura/contract": ["../contract/dist/index.d.ts"]
-    }
+    "declaration": true,
+    "skipLibCheck": true
   },
   "include": ["src"]
 }

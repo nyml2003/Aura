@@ -1,4 +1,4 @@
-import type { InitData, ListInitData } from '@aura/contract';
+import type { InitData, ListInitData, ArticleInitData } from '@aura/contract';
 import { INIT_DATA_GLOBAL, INIT_DATA_ID } from '@aura/contract';
 
 declare global {
@@ -50,4 +50,8 @@ export function isListInitData(data: InitData): data is ListInitData {
   return data.scene === 'list';
 }
 
-export type { InitData, ListInitData };
+export function isArticleInitData(data: InitData): data is ArticleInitData {
+  return data.scene === 'article';
+}
+
+export type { InitData, ListInitData, ArticleInitData };

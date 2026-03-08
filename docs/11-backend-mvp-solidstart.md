@@ -50,20 +50,23 @@
 - **删除**：`app/backend`（Go）、`app/server`（Deno）、`app/server-node`（若存在），一次性移除。
 - **原则**：**目录层面前后端分离**；前端仅含 UI 与 client 构建产物，后端仅含网关、业务层、API；**SSR 作为后端的一种输出方式**，由后端在需要时使用前端构建结果（或仅注入数据），不把「SSR」与「前端」混为一谈。**前后端同构的通用部分**（契约类型、API 形状、scenecode 等）单独成包，与 frontend、backend **并列**，避免双份维护。
 
-**推荐结构**：`app/contract`（前后端共用）、`app/frontend`、`app/backend` 三者并列；前端目录参考现有 demo 的 monorepo 形态。
+**推荐结构**：`app/contract`（前后端共用）、`app/site`（base URL 启动注入）、`app/frontend`、`app/backend` 并列；前端目录参考现有 demo 的 monorepo 形态。
 
 ```
 app/
 ├── contract/                     # 前后端共用：契约类型、API 形状、scenecode、__INIT_DATA__ 等（与 frontend/backend 并列）
 │   ├── src/
 │   │   ├── index.ts              # 统一 re-export
-│   │   ├── init-data.d.ts        # 纯类型：ListItem、ListInitData、InitData
-│   │   ├── init-data.ts          # 运行时常量：INIT_DATA_ID、INIT_DATA_GLOBAL
-│   │   ├── scenecode.d.ts        # 纯类型：SceneCode 等
-│   │   ├── scenecode.ts          # 运行时常量（若有）
+│   │   ├── init-data.ts          # ListItem、ListInitData、InitData、INIT_DATA_ID 等
+│   │   ├── scenecode.ts          # SceneCode、PATH_SCENECODE、SceneCodeType
 │   │   └── ...
 │   ├── tsconfig.json
 │   └── package.json              # 如 @aura/contract，被 frontend 与 backend 共同依赖
+├── site/                         # 站点 base URL：启动时注入，不读 env；与 contract 类似单独成包
+│   ├── src/
+│   │   └── index.ts              # setSiteBase(url)、getSiteBase()，默认开发 http://localhost:4000
+│   ├── tsconfig.json
+│   └── package.json              # @aura/site，仅 backend 依赖；网关入口在启动时 setSiteBase(argv[2] ?? "http://localhost:4000")
 ├── frontend/                     # 前端（参考现有 demo）：pnpm monorepo，仅 UI 与构建产物
 │   ├── apps/
 │   │   └── list/                 # 列表应用（当前 demo）
@@ -83,11 +86,11 @@ app/
 │   ├── src/
 │   │   ├── gateway/
 │   │   ├── business/
-│   │   │   └── list.ts           # listData() 从存储取数，MVP 在业务层内 mock；getSiteBase()；可 import @aura/contract
+│   │   │   └── list.ts           # listData() 从存储取数，MVP 在业务层内 mock；getSiteBase() 来自 @aura/site；可 import @aura/contract
 │   │   ├── api/
 │   │   │   └── list.get.ts       # 返回 JSON 形状与 contract 一致
 │   │   └── ssr/
-│   └── package.json              # 依赖 @aura/contract
+│   └── package.json              # 依赖 @aura/contract、@aura/site
 ├── nginx/
 │   └── nginx.conf
 ├── docker-compose.yml
@@ -96,7 +99,7 @@ app/
 ```
 
 - **contract**：与 frontend、backend **并列**的独立包；仅含契约类型、scenecode、`__INIT_DATA__` 结构等前后端同构内容；**frontend 与 backend 共同依赖**，不归属任一端，保证 API/首屏数据定义单一来源。
-- **契约包规范（项目规范）**：**纯类型**（interface、type）放在 **`.d.ts`** 中，不产出运行时代码；**运行时常量**（如 `INIT_DATA_ID`、`INIT_DATA_GLOBAL`）放在 **`.ts`** 中导出，供前端/后端在运行时使用。同一主题可拆成 `xxx.d.ts`（类型）+ `xxx.ts`（常量），由 `index.ts` 统一 re-export。
+- **契约包规范**：类型与常量统一在 **`.ts`** 中定义，由 `index.ts` 统一 re-export。
 - **frontend**：沿用现有 demo 结构；`apps/list` 为列表页（Vite + Solid），依赖 `@aura/contract`；`packages/page-common`、`request-sdk` 仅前端用（可依赖 contract）；不再在 frontend 内维护契约定义，改为依赖 app/contract。
 - **backend**：Node 项目；依赖 `@aura/contract` 做类型与返回形状；**业务层**负责首屏数据从「存储」获取，MVP 在业务层内 mock 一份，网关/API/SSR 只调业务层；其余同上。**SSR 只是 backend 的一种响应方式**，不改变「前端 = UI、后端 = 网关+业务+API」的边界。
 
@@ -106,7 +109,7 @@ app/
 
 - **首屏数据来源**：首屏数据应由**业务层通过「查存储」获得**；MVP 阶段尚未接真实 DB 时，**在业务层内 mock 一份**（如 `listData()` 内部返回写死的 ListItem[] 或从内存/文件读），接口与返回形态与日后真实存储一致，网关/API 只调业务层、不关心数据从哪来。
 - **list 场景**：`GET /`、`GET /list` 进入列表页路由；**服务端**在渲染该页时 **import** `listData()`（业务层，内部查存储或 mock）得到 `ListInitData`（`{ scene: 'list', list: ListItem[] }`），注入首屏 HTML 与 `__INIT_DATA__`；每条 `ListItem` 含 `href`（完整 URL）。与 10 的「首屏数据」及「列表项 href」一致。可选：同时提供 `GET /api/list` 返回同一 JSON，供前端异步请求或测试。
-- **SITE_BASE**：环境变量，默认 `http://localhost:9080`（或开发时 3000）；业务层 `getSiteBase()` 读此变量拼链接，与 09 的「链接由系统生成、host 由配置」一致。
+- **SITE_BASE / base URL**：**不用 env**，由 **`@aura/site` 包**在**启动时注入**；网关入口（如 `backend/src/index.ts`）在进程启动时调用 `setSiteBase(process.argv[2] ?? "http://localhost:4000")`，业务层通过 `getSiteBase()` 拼链接。开发环境默认 `http://localhost:4000`；Docker/生产可在 CMD 中传入首参覆盖（如 `http://localhost:9080`）。与 09 的「链接由系统生成、host 由配置」一致。
 - **健康检查**：SolidStart/Nitro 可挂 `GET /health` 或沿用现有约定，由路由或 Nitro 插件实现。
 
 ### 流程示意：从进入列表到分页/筛选

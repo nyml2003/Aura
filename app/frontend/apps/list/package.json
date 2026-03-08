@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@aura/page-common": "workspace:*",
+    "@aura/performance-sdk": "workspace:*",
     "@aura/request-sdk": "workspace:*",
     "solid-js": "^1.8.0"
   },

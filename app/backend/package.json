@@ -7,10 +7,15 @@
   "scripts": {
     "start": "node dist/index.js",
     "build": "tsc",
-    "dev": "tsx watch src/index.ts"
+    "prebuild": "pnpm --dir ../contract run build && pnpm --dir ../site run build",
+    "prepare-site": "node scripts/prepare-site.cjs",
+    "dev": "tsx watch --tsconfig tsconfig.dev.json src/index.ts",
+    "predev": "pnpm --dir ../contract run build && pnpm --dir ../site run build && pnpm run prepare-site",
+    "prestart": "pnpm --dir ../contract run build && pnpm --dir ../site run build && pnpm run prepare-site"
   },
   "dependencies": {
     "@aura/contract": "file:../contract",
+    "@aura/site": "file:../site",
     "express": "^4.21.0"
   },
   "devDependencies": {
