@@ -5,9 +5,11 @@
     "build": "pnpm --filter \"@aura/app-*\" run build",
     "build:list": "pnpm --filter @aura/app-list build",
     "build:article": "pnpm --filter @aura/app-article build",
+    "build:admin": "pnpm --filter @aura/app-admin build",
     "dev": "pnpm --filter @aura/app-list dev",
     "dev:list": "pnpm --filter @aura/app-list dev",
-    "dev:article": "pnpm --filter @aura/app-article dev"
+    "dev:article": "pnpm --filter @aura/app-article dev",
+    "dev:admin": "pnpm --filter @aura/app-admin dev"
   },
   "devDependencies": {
     "typescript": "^5.3.0"

@@ -1,51 +1,32 @@
 /**
- * 业务层：列表与文章详情（MVP mock），链接用 @aura/site 的 getSiteBase，启动时注入
+ * 业务层：列表与文章详情，从 store（文件系统）读取；链接用 @aura/site 的 getSiteBase
  */
 import type { ListItem, ArticleDetail } from "@aura/contract";
 import { getSiteBase } from "@aura/site";
+import { getArticles, getArticleById } from "./store.js";
 
-interface MockItem {
-  id: string;
-  title: string;
-  summary: string;
-  meta: string;
-}
-
-const MOCK_ITEMS: MockItem[] = [
-  { id: "article-1", title: "第一篇示例文章", summary: "这是摘要内容，MVP 仅列表页。", meta: "2025-03-07" },
-  { id: "article-2", title: "第二篇示例文章", summary: "摘要二。", meta: "2025-03-06" },
-  { id: "article-3", title: "第三篇示例文章", summary: "摘要三。", meta: "2025-03-05" },
-  { id: "article-4", title: "第四篇示例文章", summary: "摘要四。", meta: "2025-03-04" },
-  { id: "article-5", title: "第五篇示例文章", summary: "摘要五。", meta: "2025-03-03" },
-];
-
-const MOCK_CONTENT: Record<string, string> = {
-  "article-1": "这里是第一篇文章的正文。MVP 阶段为纯文本占位，后续可接入富文本或 Markdown。",
-  "article-2": "第二篇正文内容。",
-  "article-3": "第三篇正文内容。",
-  "article-4": "第四篇正文内容。",
-  "article-5": "第五篇正文内容。",
-};
-
-function toListItem(item: MockItem): ListItem {
+function toListItem(row: { id: string; title: string; summary: string; href?: string; meta: string }): ListItem {
   const base = getSiteBase();
   return {
-    ...item,
+    id: row.id,
     type: "article",
-    href: `${base}/article/${item.id}`,
+    title: row.title,
+    summary: row.summary,
+    href: row.href ?? `${base}/article/${row.id}`,
+    meta: row.meta,
   };
 }
 
-export function listData(): ListItem[] {
-  return MOCK_ITEMS.map(toListItem);
+export async function listData(): Promise<ListItem[]> {
+  const rows = await getArticles();
+  return rows.map((row) => toListItem(row));
 }
 
-export function getArticle(id: string): ArticleDetail | null {
-  const item = MOCK_ITEMS.find((x) => x.id === id);
-  if (!item) return null;
-  const content = MOCK_CONTENT[id] ?? "（暂无正文）";
-  const listItem = toListItem(item);
-  return { ...listItem, content };
+export async function getArticle(id: string): Promise<ArticleDetail | null> {
+  const row = await getArticleById(id);
+  if (!row) return null;
+  const listItem = toListItem(row);
+  return { ...listItem, content: row.content };
 }
 
 export function getListHref(): string {

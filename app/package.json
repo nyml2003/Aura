@@ -5,9 +5,11 @@
   "scripts": {
     "build:list": "pnpm --filter @aura/app-list build",
     "build:article": "pnpm --filter @aura/app-article build",
-    "build": "pnpm run build:list && pnpm run build:article",
+    "build": "pnpm run build:list && pnpm run build:article && pnpm run build:admin",
+    "build:admin": "pnpm --filter @aura/app-admin build",
     "dev": "pnpm --filter @aura/app-list dev",
     "dev:list": "pnpm --filter @aura/app-list dev",
-    "dev:article": "pnpm --filter @aura/app-article dev"
+    "dev:article": "pnpm --filter @aura/app-article dev",
+    "dev:admin": "pnpm --filter @aura/app-admin dev"
   }
 }
